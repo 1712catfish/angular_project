@@ -1,10 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<!--<h1>Todo List</h1>-->
+<!--<ul>-->
+<!--  <li *ngFor="let task of stringArray$ | async; let i = index;">-->
+<!--    <div *ngIf="!editingTask || i !== editingTask.index">{{ task }}</div>-->
+<!--    <div *ngIf="editingTask && i === editingTask.index">-->
+<!--      <input type="text" [(ngModel)]="editingTask!.value" (keyup.enter)="saveTask()" (keyup.escape)="cancelEdit()">-->
+<!--    </div>-->
+<!--    <button class="delete" (click)="deleteTask(i)">X</button>-->
+<!--  </li>-->
+<!--</ul>-->
+<!--<button (click)="addTask()">Add Task</button>-->
+
+<!--<ul>-->
+<!--  <li *ngFor="let todo of stringArray$ | async; let i = index;">-->
+<!--&lt;!&ndash;    <div class="text-2xl">{{todo}}</div>&ndash;&gt;-->
+<!--    <button class="delete" (click)="deleteTask(i)">X</button>&ndash;&gt;-->
+<!--  </li>-->
+<!--</ul>-->
+
+<!--<div class="mx-12">-->
+<!--  <div *ngFor="let task of items; let i = index;">-->
+<!--    <div *ngIf="!editingTask || i !== editingTask.index" (click)="setEditingTask(i)">-->
+<!--      <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">-->
+<!--        <input checked type="checkbox" value=""-->
+<!--               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">-->
+<!--        <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{task}}</label>-->
+<!--      </div>-->
+
+
+<!--    </div>-->
+<!--    <div *ngIf="editingTask && i === editingTask.index" class="text-red-400">-->
+<!--      <input type="text" [(ngModel)]="editingTask!.value" (keyup.enter)="saveTask()" (keyup.escape)="cancelEdit()">-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="text-base" (click)="addTask()">+ task</div>-->
+<!--</div>-->
+
+<ul
+  class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+  <!--  <li *ngFor="let item of items; let i = index;"-->
+  <!--      class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">-->
+  <!--    <div class="flex items-center pl-3">-->
+  <!--&lt;!&ndash;      <input type="checkbox" value=""&ndash;&gt;-->
+  <!--&lt;!&ndash;             class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">&ndash;&gt;-->
+  <!--&lt;!&ndash;      <label class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">&ndash;&gt;-->
+  <!--&lt;!&ndash;        {{item}}&ndash;&gt;-->
+  <!--&lt;!&ndash;      </label>&ndash;&gt;-->
+
+  <!--      <input checked id="purple-checkbox" type="checkbox" value="" class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">-->
+  <!--      <label for="purple-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Purple</label>-->
+
+  <!--    </div>-->
+
+  <li *ngFor="let item of items; let i = index;">
+    <div *ngIf="!editingTask || i !== editingTask.index; else taskNotFocused">
+      taskNotFocused
+    </div>
+    <div *ngIf="!editingTask || i !== editingTask.index">
+
+    </div>
+
+  </li>
+  <!--  </li>-->
+  <div class="text-base" (click)="addTask()">+ task</div>
+
+</ul>
+
+<ng-template #taskFocused>
+  <input type="checkbox" value="" class="hidden peer" required="false">
+  <label class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+    <div class="block">
+      <div class="w-full text-lg font-semibold">item</div>
+    </div>
+  </label>
+</ng-template>
+
+<ng-template #taskNotFocused>
+  <input type="checkbox" value="" class="hidden peer" required="false">
+  <label class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+    <div class="block">
+      <div class="w-full text-lg font-semibold">item</div>
+    </div>
+  </label>
+</ng-template>
+

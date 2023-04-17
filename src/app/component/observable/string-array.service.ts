@@ -18,6 +18,10 @@ export class StringArrayService {
     return this._dataSubject$.asObservable().pipe(map(data => data[index]));
   }
 
+  public get stringArray$(): Observable<string[]> {
+    return this._dataSubject$.asObservable();
+  }
+
   public edit(index: number, newValue: string): void {
     this._data$[index] = newValue;
     this._notifyDataChange();

@@ -1,9 +1,12 @@
 import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 import {StringArrayService} from './string-array.service';
 
-@Component({})
+@Component({
+  selector: 'app-string-array-base',
+  template: '',
+})
 export abstract class StringArrayBaseComponent implements OnInit, OnDestroy {
   public stringArray: string[] | undefined;
   public stringArrayLength: number | undefined;
@@ -11,15 +14,17 @@ export abstract class StringArrayBaseComponent implements OnInit, OnDestroy {
   private readonly _subscriptions = new Subscription();
 
   constructor(@Inject(StringArrayService) private readonly _stringArrayService: StringArrayService) {
+
   }
 
   ngOnInit(): void {
     this._subscriptions.add(
       this._stringArrayService.data$.subscribe(data => {
+        console.log(data)
         this.stringArray = data;
         this.stringArrayLength = data.length;
       })
-    );
+    )
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,20 @@
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box" cdkDrag
+       *ngFor="let item of items$ | async; index as i"
+       on-mouseover="hoverIndex = i" on-mouseleave="hoverIndex = -1">
+    <app-todolist-item
+      class="w-full"
+      [isHover]="hoverIndex==i"
+      [item]="item"
+      [setItem]="setItem(i)">
+    </app-todolist-item>
+  </div>
+</div>
+<div class="h-2"></div>
+<button mat-stroked-button
+        class="justify-self-start w-40" (click)="addEmptyItem()">
+  <fa-icon [icon]="faCirclePlus"></fa-icon>
+  Add new task
+</button>
+
+<!--      (checked)="itemChecked(i, $event)"-->
